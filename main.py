@@ -1,5 +1,6 @@
 import os
 from git import Repo  # pip install gitpython
+from os import listdir
 
 git_url = "https://github.com/meddlin/tiktok-recipes.git"
 repo_dir = "./test-repo"
@@ -27,12 +28,30 @@ def matrix_print():
                 print(f'x', end=" ")
         print(f'', end="\n")
 
-def main():    
-    matrix_print()
+def clone_repo(git_url, repo_dir):
+    Repo.clone_from(git_url, repo_dir)
+
+def print_a_file():
+    files = []
+    files = os.listdir('./test-repo')
+    print(files)
+
+    # printing a file
+    with open('./test-repo/config.js') as f:
+        s = f.read()
+        squashed_text = "".join(s.split())
+        print(squashed_text)
+        print('Contents have been printed...')
+        print('...')
+        print('...')
+        print('Now printing squashed text as a list')
+        print( list(squashed_text) )
+
+def main():
+    # matrix_print()
+    # clone_repo(git_url, repo_dir)
+    print_a_file()
         
 
 if (__name__ == "__main__"):
     main()
-
-# clone repo
-# Repo.clone_from(git_url, repo_dir)
