@@ -1,6 +1,7 @@
 import os
 from git import Repo  # pip install gitpython
 from os import listdir
+import time
 
 git_url = "https://github.com/meddlin/tiktok-recipes.git"
 repo_dir = "./test-repo"
@@ -31,6 +32,16 @@ def matrix_print():
 def clone_repo(git_url, repo_dir):
     Repo.clone_from(git_url, repo_dir)
 
+def basicGen(n):
+    yield n
+    yield n + 1
+
+def myGen():
+    arr = list('abcdefghijklmnopqrstuvwxyz')
+
+    for x in range(len(arr)):
+        yield arr[x]
+
 def print_a_file():
     files = []
     files = os.listdir('./test-repo')
@@ -50,7 +61,13 @@ def print_a_file():
 def main():
     # matrix_print()
     # clone_repo(git_url, repo_dir)
-    print_a_file()
+
+    # print_a_file()
+
+    g = myGen()
+    for x in range(25):
+        print( next(g) )
+        time.sleep(0.5)
         
 
 if (__name__ == "__main__"):
